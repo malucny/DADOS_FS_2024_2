@@ -1,0 +1,97 @@
+/* Lógico_1: */
+
+CREATE TABLE Aluno(a) (
+    matricula INTEGER PRIMARY KEY,
+    nomeCompleto VARCHAR(50),
+    turma VARCHAR(15),
+    dataNascimento DATE,
+    sexo CHAR(1),
+    notas DECIMAL,
+    endereco VARCHAR,
+    telefone VARCHAR,
+    email VARCHAR
+);
+
+CREATE TABLE Professor (
+    id_professor INTEGER PRIMARY KEY,
+    nome VARCHAR(50),
+    endereco VARCHAR(70),
+    telefone VARCHAR(15),
+    disciplina VARCHAR(50),
+    sexo CHAR(1),
+    cpf INTEGER
+);
+
+CREATE TABLE Disciplina (
+    nomeDisciplina VARCHAR(50),
+    professorResponsavel VARCHAR(50),
+    aluno_matriculado VARCHAR(50),
+    id_disciplina VARCHAR PRIMARY KEY
+);
+
+CREATE TABLE Turma (
+    disciplinaOfertada VARCHAR(50),
+    alunoMatriculado VARCHAR(50),
+    corpoDoscente VARCHAR(50),
+    id_turma INTEGER PRIMARY KEY
+);
+
+CREATE TABLE está (
+    fk_Aluno(a)_matricula INTEGER,
+    fk_Professor_id_professor INTEGER
+);
+
+CREATE TABLE têm (
+    fk_Turma_id_turma INTEGER,
+    fk_Professor_id_professor INTEGER
+);
+
+CREATE TABLE lecionada (
+    fk_Turma_id_turma INTEGER,
+    fk_Disciplina_id_disciplina VARCHAR
+);
+
+CREATE TABLE aprende (
+    fk_Disciplina_id_disciplina VARCHAR,
+    fk_Aluno(a)_matricula INTEGER
+);
+ 
+ALTER TABLE está ADD CONSTRAINT FK_está_1
+    FOREIGN KEY (fk_Aluno(a)_matricula)
+    REFERENCES Aluno(a) (matricula)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE está ADD CONSTRAINT FK_está_2
+    FOREIGN KEY (fk_Professor_id_professor)
+    REFERENCES Professor (id_professor)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE têm ADD CONSTRAINT FK_têm_1
+    FOREIGN KEY (fk_Turma_id_turma)
+    REFERENCES Turma (id_turma)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE têm ADD CONSTRAINT FK_têm_2
+    FOREIGN KEY (fk_Professor_id_professor)
+    REFERENCES Professor (id_professor)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE lecionada ADD CONSTRAINT FK_lecionada_1
+    FOREIGN KEY (fk_Turma_id_turma)
+    REFERENCES Turma (id_turma)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE lecionada ADD CONSTRAINT FK_lecionada_2
+    FOREIGN KEY (fk_Disciplina_id_disciplina)
+    REFERENCES Disciplina (id_disciplina)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE aprende ADD CONSTRAINT FK_aprende_1
+    FOREIGN KEY (fk_Disciplina_id_disciplina)
+    REFERENCES Disciplina (id_disciplina)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE aprende ADD CONSTRAINT FK_aprende_2
+    FOREIGN KEY (fk_Aluno(a)_matricula)
+    REFERENCES Aluno(a) (matricula)
+    ON DELETE SET NULL;
