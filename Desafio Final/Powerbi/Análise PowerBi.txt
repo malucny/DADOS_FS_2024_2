@@ -1,0 +1,3 @@
+No Database analisado podemos ver que a Empresas X oferece direito igualitários sem distinções de gênero.
+No gráfico soma de salário por gênero os três grupos apresentam porcentagens semelhante, sendo a categoria outros detentora de maior percentual.
+Igualmente no gráfico anos de experiência os três grupos apresentam semelhante tempo de empenho a empresa, e no último gráfico que é gênero por departamento temos divisões mais distintas onde cada categoria de trabalho apresenta a prevalência de um maior grupo.
